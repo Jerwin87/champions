@@ -1,10 +1,10 @@
-    <?php
+<?php
 
-    include "header.php";
-    include "menu.php";
+include "../htmls/header.html";
+include "../htmls/menu.html";
+?>
+<h1>Datenbank erweitern</h1>
+
+<?php include "../htmls/footer.html"
     ?>
-    <h1>Datenbank erweitern</h1>
-
-    <?php include "footer.php"
-        ?>
-    <script src="" async defer></script>
+<script src="" async defer></script>
