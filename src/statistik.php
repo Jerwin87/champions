@@ -1,14 +1,12 @@
 <?php
 include "../htmls/header.html";
 include "../htmls/menu.html";
+include "../data/mysqlconnect.php";
 ?>
 <h1>Statistik</h1>
 <?php
-$servername = "localhost";
-$username = "root";
-$database = "champions.db";
 
-$conn = new mysqli($servername, $username, "", $database);
+$conn = new mysqli($servername, $username, $password, $database);
 
 if ($conn->connect_errno) {
     die("Connection failed: " . $conn->connect_error);
