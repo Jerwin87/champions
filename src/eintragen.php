@@ -10,10 +10,28 @@ if ($conn->connect_errno) {
     die("Connection failed: " . $conn->connect_error);
 }
 
+$date = date('Y-m-d', strtotime($_POST["date"]));
 $hero_id = $_POST["hero_id"];
 $villain_id = $_POST["villain_id"];
+$aspect = $_POST["aspect"];
+$aspect_2 = $_POST["aspect_2"];
+$difficulty = $_POST["difficulty"];
+$encounter_set_1 = $_POST["encounter_set_1"];
+$encounter_set_2 = $_POST["encounter_set_2"];
+$encounter_set_3 = $_POST["encounter_set_3"];
+$encounter_set_4 = $_POST["encounter_set_4"];
+$encounter_set_5 = $_POST["encounter_set_5"];
+$encounter_set_6 = $_POST["encounter_set_6"];
+$encounter_set_7 = $_POST["encounter_set_7"];
+$result = $_POST["result"];
 
-$query = "INSERT INTO games (game_id, hero_id, scenario_id) VALUES (NULL, $hero_id, $villain_id)";
+$query = "INSERT INTO games 
+(game_id, date, hero_id, aspect, aspect_2, difficulty, scenario_id, 
+encounter_set_1, encounter_set_2, encounter_set_3, encounter_set_4, 
+encounter_set_5, encounter_set_6, encounter_set_7, win) 
+VALUES (NULL, '$date', $hero_id, '$aspect', '$aspect_2', '$difficulty', $villain_id, 
+'$encounter_set_1', '$encounter_set_2', '$encounter_set_3', '$encounter_set_4', 
+'$encounter_set_5', '$encounter_set_6', '$encounter_set_7', $result)";
 if ($conn->query($query) === TRUE) {
     echo "<h2>Spiel erfolgreich eingetragen</h2>";
 } else {
@@ -21,4 +39,3 @@ if ($conn->query($query) === TRUE) {
 }
 include "footer.php"
     ?>
-<script src="" async defer></script>
