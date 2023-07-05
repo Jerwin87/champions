@@ -10,11 +10,11 @@ if ($conn->connect_errno) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-$query_h = "SELECT * FROM heroes";
+$query_h = "SELECT * FROM heroes JOIN products ON heroes.product_ref=products.product_ref WHERE products.collected = 1";
 $heroes = $conn->query($query_h);
 $herocount = $heroes->num_rows;
 
-$query_v = "SELECT * FROM scenarios";
+$query_v = "SELECT * FROM encounter_sets JOIN products ON encounter_sets.product_ref=products.product_ref WHERE products.collected = 1 AND encounter_sets.scenario = 1";
 $villains = $conn->query($query_v);
 $villaincount = $villains->num_rows;
 
@@ -22,7 +22,7 @@ $query_aspects = "SELECT * FROM aspects";
 $aspects = $conn->query($query_aspects);
 $aspectcount = $aspects->num_rows;
 
-$query_modular = "SELECT * FROM encounter_sets WHERE modular = 1";
+$query_modular = "SELECT * FROM encounter_sets JOIN products ON encounter_sets.product_ref=products.product_ref WHERE products.collected = 1 AND encounter_sets.modular = 1";
 $encounters = $conn->query($query_modular);
 $encountercount = $encounters->num_rows;
 
@@ -97,7 +97,7 @@ $encountercount = $encounters->num_rows;
         <?php
         while ($row = $villains->fetch_assoc()) {
             ?>
-            <option value="<?php echo $row["scenario_id"] ?>"><?php echo $row["scenario_name"] ?></option>
+            <option value="<?php echo $row["set_id"] ?>"><?php echo $row["set_name"] ?></option>
             <?php
         }
         ?>

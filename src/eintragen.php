@@ -26,7 +26,7 @@ $encounter_set_7 = $_POST["encounter_set_7"];
 $result = $_POST["result"];
 
 $query = "INSERT INTO games 
-(game_id, date, hero_id, aspect, aspect_2, difficulty, scenario_id, 
+(game_id, date, hero_id, aspect, aspect_2, difficulty, set_id, 
 encounter_set_1, encounter_set_2, encounter_set_3, encounter_set_4, 
 encounter_set_5, encounter_set_6, encounter_set_7, win) 
 VALUES (NULL, '$date', $hero_id, '$aspect', '$aspect_2', '$difficulty', $villain_id, 
