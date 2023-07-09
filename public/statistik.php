@@ -22,6 +22,8 @@ if ($games->num_rows > 0) {
     echo "Nichts anzuzeigen";
 }
 ?>
+<br>
+
 <?php
 include "../htmls/footer.html"
     ?>
