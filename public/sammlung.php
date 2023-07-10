@@ -23,11 +23,11 @@ if ($conn->connect_errno) {
         "scenario" => "Szenarien"
     );
 
-    ?><span class="container">
+    ?><div class="container">
         <?php
         foreach ($set_types as $type => $name) {
 
-            ?><span class="child"><b class="head">
+            ?><div class="child"><b class="head">
             <?php echo $name . "<br>"; ?>
         </b>
         <?php
@@ -47,15 +47,14 @@ if ($conn->connect_errno) {
                         name="<?php echo $row["product_id"] ?>">
                     <span class="checkmark"> <span class="collection_label">
                             <?php echo $row["product_name"] ?>
-                        </span><span>
                 </label><br>
             <?php
         }
         echo "<br>";
-        ?></span><?php
+        ?></div><?php
         }
         ?>
-    </span>
+    </div>
 
     <input class="confirm_button" type="submit" value="Sammlung aktualisieren">
 

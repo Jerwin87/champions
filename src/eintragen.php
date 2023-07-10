@@ -23,7 +23,7 @@ $encounter_set_4 = $_POST["encounter_set_4"];
 $encounter_set_5 = $_POST["encounter_set_5"];
 $encounter_set_6 = $_POST["encounter_set_6"];
 $encounter_set_7 = $_POST["encounter_set_7"];
-$result = $_POST["result"];
+$result = $_POST["result"] == 1 ? 1 : 0; 
 
 $query = "INSERT INTO games 
 (game_id, date, hero_id, aspect, aspect_2, difficulty, set_id, 

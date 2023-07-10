@@ -110,7 +110,7 @@ $encountercount = $encounters->num_rows;
     while ($x <= 7) {
         $set_num = "encounter_set_" . $x;
         ?>
-        <select name="<?php echo $set_num?>">
+        <select name="<?php echo $set_num ?>">
             <option value="">Modulare Sets</option>
             <?php
             while ($row = $encounters->fetch_assoc()) {
@@ -128,16 +128,21 @@ $encountercount = $encounters->num_rows;
 
     <!-- Ergebniss eintragen -->
 
-    Gewonnen?
-    <input type="checkbox" name="result" value=1>
-
-
+    <label class="collection_button_2">
+        <input type="checkbox" id="game_checkbox" name="result" value=1 onclick="ergebnisAendern()">
+        <span class="checkmark_2">
+            <span class="result_label">Ergebnis</span>
+</label>
+    <br>
+    <br>
+    <p id="test">Hallo</p>
     <!-- Alles abschicken -->
 
-    <input type="submit" value="Eintragen">
+    <input class="confirm_button" type="submit" value="Eintragen">
 
 
 </form>
 <?php include "../htmls/footer.html"
     ?>
-<script src="" async defer></script>
+<script src=".../scripts/jquery.js" type="text/javascript"></script>
+<script src=".../scripts/eintragen.js" type="text/javascript"></script>
