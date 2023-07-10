@@ -1,7 +1,5 @@
 body {
     margin-top: 0;
-    margin-left: 10%;
-    margin-right: 10%;
     background-color: #EDEDED;
 }
 
@@ -70,16 +68,17 @@ li a {
 
 .container {
     display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
-    align-items: flex-start;
-    height: 900px;
+    flex-flow: row wrap;
+    height: 100%;
+    min-height: 850px;
     gap: 20px;
+    align-content: flex-start;
 }
 
 .child {
     width: 200px;  
-    height: 100px;  
+    height: 100%;  
+    align-self: flex-start;
 }
 
 .head {
@@ -93,11 +92,24 @@ li a {
     --height: 25px;
 
     position: relative;
-    display: inline-block;
     width: var(--width);
     height: var(--height);
     box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.3);
     border-radius: var(--height);
     cursor: pointer;
     background-color: #9b949460;
+}
+
+@media (min-width:801px) {
+    body {
+        margin-left: 10%;
+        margin-right: 10%;
+    }    
+}
+
+@media (min-width:1281px) {
+    body {
+        margin-left: 20%;
+        margin-right: 20%;
+    }    
 }
