@@ -1,7 +1,7 @@
 body {
     margin-top: 0;
-    margin-left: 20%;
-    margin-right: 20%;
+    margin-left: 10%;
+    margin-right: 10%;
     background-color: #EDEDED;
 }
 
@@ -16,6 +16,7 @@ h1 {
     width: 100%;
 }
 
+/* menu */
 ul {
     list-style-type: none;
     margin: 0;
@@ -27,20 +28,7 @@ li a {
     display: block;
 }
 
-/* .c_button {
-    --width: 200px;
-    --height: 25px;
-
-    position: relative;
-    display: inline-block;
-    width: var(--width);
-    height: var(--height);
-    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.3);
-    border-radius: var(--height);
-    cursor: pointer;
-    background-color: rgb(114, 185, 113);
-} */
-
+/* collection table */
 .collection_button {
     --width: 200px;
     --height: 25px;
@@ -52,7 +40,6 @@ li a {
     box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.3);
     border-radius: var(--height);
     cursor: pointer;
-
 }
 
 .collection_button input {
@@ -71,13 +58,46 @@ li a {
     background-color: #9b949460;
 }
 
-/* When the checkbox is checked, add a green background */
 .collection_button input:checked~.checkmark {
     background-color: rgb(114, 185, 113);
 }
 
 .collection_label {
     position: relative;
-    top: 3px;
+    top: 4px;
     left: 10px;
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: flex-start;
+    height: 900px;
+    gap: 20px;
+}
+
+.child {
+    width: 200px;  
+    height: 100px;  
+}
+
+.head {
+    position: relative;
+    left: 10px;
+    bottom: 10px;
+}
+
+.confirm_button {
+    --width: 200px;
+    --height: 25px;
+
+    position: relative;
+    display: inline-block;
+    width: var(--width);
+    height: var(--height);
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.3);
+    border-radius: var(--height);
+    cursor: pointer;
+    background-color: #9b949460;
 }

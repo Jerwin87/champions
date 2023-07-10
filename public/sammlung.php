@@ -18,14 +18,19 @@ if ($conn->connect_errno) {
 
     $set_types = array(
         "core_set" => "Grundspiel",
-        "campaign" => "Kampagne",
+        "campaign" => "Kampagnen",
         "hero" => "Helden",
         "scenario" => "Szenarien"
     );
 
-    foreach ($set_types as $type => $name) {
+    ?><span class="container">
+        <?php
+        foreach ($set_types as $type => $name) {
 
-        ?><u><?php echo $name . "<br>";?></u><?php
+            ?><span class="child"><b class="head">
+            <?php echo $name . "<br>"; ?>
+        </b>
+        <?php
         $product_query = "SELECT * FROM products WHERE $type=1";
         $products = $conn->query($product_query);
         $productnum = $products->num_rows;
@@ -34,20 +39,27 @@ if ($conn->connect_errno) {
             if ($row["collected"]) {
                 $checked = "checked";
             } else {
-                $checked = ""; }
-                ?>
+                $checked = "";
+            }
+            ?>
                 <label class="collection_button">
-                    <input type="checkbox" <?php echo $checked?> value="<?php echo $row["product_id"] ?>" name="<?php echo $row["product_id"] ?>" >
-                    <span class="checkmark"> <span class="collection_label"><?php echo $row["product_name"] ?></span><span>
+                    <input type="checkbox" <?php echo $checked ?> value="<?php echo $row["product_id"] ?>"
+                        name="<?php echo $row["product_id"] ?>">
+                    <span class="checkmark"> <span class="collection_label">
+                            <?php echo $row["product_name"] ?>
+                        </span><span>
                 </label><br>
-                <?php
+            <?php
         }
         echo "<br>";
-    }
-    ?>
+        ?></span><?php
+        }
+        ?>
+    </span>
 
-        <input type="submit" value="Sammlung aktualisieren">
+    <input class="confirm_button" type="submit" value="Sammlung aktualisieren">
 
-        <?php include "../htmls/footer.html"
-            ?>
-        <script src="" async defer></script>
+    <br>
+    <?php include "../htmls/footer.html"
+        ?>
+    <script src="" async defer></script>
