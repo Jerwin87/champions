@@ -129,13 +129,11 @@ $encountercount = $encounters->num_rows;
     <!-- Ergebniss eintragen -->
 
     <label class="collection_button_2">
-        <input type="checkbox" id="game_checkbox" name="result" value=1 onclick="ergebnisAendern()">
-        <span class="checkmark_2">
-            <span class="result_label">Ergebnis</span>
-</label>
-    <br>
-    <br>
-    <p id="test">Hallo</p>
+            <input type="checkbox" id="game_checkbox" name="result" value=1>
+            <span id="checkmark_2">
+                <label id="result_label">Verloren</span>
+    </label>
+
     <!-- Alles abschicken -->
 
     <input class="confirm_button" type="submit" value="Eintragen">
@@ -144,5 +142,5 @@ $encountercount = $encounters->num_rows;
 </form>
 <?php include "../htmls/footer.html"
     ?>
-<script src=".../scripts/jquery.js" type="text/javascript"></script>
-<script src=".../scripts/eintragen.js" type="text/javascript"></script>
+<script src="../scripts/jquery.js" type="text/javascript"></script>
+<script src="../scripts/eintragen.js" type="text/javascript"></script>

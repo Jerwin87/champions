@@ -118,7 +118,7 @@ li a {
     opacity: 0;
 }
 
-.checkmark_2 {
+#checkmark_2 {
     position: absolute;
     display: inline-block;
     height: var(--height);
@@ -129,11 +129,11 @@ li a {
     background-color: rgb(210, 39, 39);
 }
 
-.collection_button_2 input:checked~.checkmark_2 {
+.collection_button_2 input:checked~#checkmark_2 {
     background-color: rgb(114, 185, 113);
 }
 
-.result_label {
+#result_label {
     position: relative;
     top: 4px;
     left: 10px;
