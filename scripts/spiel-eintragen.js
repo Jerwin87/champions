@@ -28,11 +28,17 @@ $("document").ready(function () {
 
     // Schwierigkeitsmodule auswählen
     $(".radio").change(function () {
-        if ($("#exp").is(":checked") || $("#her").is(":checked")) {
+        if ($("#her").is(":checked")) {
             $("#exp_set").show();
+            $("#heroic_score").show(); 
+        }
+        else if ($("#exp").is(":checked")) {
+            $("#exp_set").show();
+            $("#heroic_score").hide();
         }
         else if ($("#std").is(":checked")) {
             $("#exp_set").hide();
+            $("#heroic_score").hide();
         }
     });
 

@@ -121,6 +121,15 @@ $scenarios = $conn->query($query_scenario);
         }
         ?>
         </select>
+
+        <select hidden id="heroic_score" name="heroic_score">
+            <?php for ($x = 1; $x < 5; $x++) {
+                ?>
+                <option value="<?php echo $x?>"><?php echo $x ?>
+                <?php
+            }
+            ?>
+        </select>
     
 
     <!-- Zwischenblock -->
