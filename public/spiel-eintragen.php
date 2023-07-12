@@ -33,10 +33,12 @@ $encountercount = $encounters->num_rows;
 
     <!-- Datum auswählen -->
 
-    <input type="date" name="date" value="date">
+    <input type="date" name="date" value="date" id="dateToday">
+    <br>
 
     <!-- Held auswählen -->
-    <select name="hero_id">
+    
+    <select name="hero_id" id="hero_select">
         <option value="">Held auswählen</option>
         <?php
         while ($row = $heroes->fetch_assoc()) {
@@ -54,10 +56,11 @@ $encountercount = $encounters->num_rows;
         }
         ?>
     </select>
+    <br>
 
     <!-- Aspekt(e) auswählen -->
 
-    <select name="aspect">
+    <select id="aspect_1" name="aspect">
         <option value="">Aspekt</option>
         <?php
         while ($row = $aspects->fetch_assoc()) {
@@ -68,7 +71,7 @@ $encountercount = $encounters->num_rows;
         ?>
     </select>
 
-    <select name="aspect_2">
+    <select hidden id="aspect_2" name="aspect_2">
         <option value="">Aspekt</option>
         <?php
         $aspects->data_seek(0);
@@ -79,17 +82,17 @@ $encountercount = $encounters->num_rows;
         }
         ?>
     </select>
-
+    <br>
     <!-- Schwierigkeitsgrad -->
-
+    Schwierigkeit:
     <select name="difficulty">
         <option value="standard">Standard</option>
         <option value="expert">Experte</option>
         <option value="heroic">Heroisch</option>
     </select>
-
+    <br>
     gegen
-
+    <br>
     <!-- Szenarioname eintragen -->
 
     <select name="villain_id">
@@ -102,7 +105,7 @@ $encountercount = $encounters->num_rows;
         }
         ?>
     </select>
-
+    <br>
     <!-- Modulare sets -->
 
     <?php
@@ -125,15 +128,15 @@ $encountercount = $encounters->num_rows;
         $x++;
     }
     ?>
-
+    <br>
     <!-- Ergebniss eintragen -->
 
     <label class="collection_button_2">
-            <input type="checkbox" id="game_checkbox" name="result" value=1>
-            <span id="checkmark_2">
-                <label id="result_label">Verloren</span>
+        <input type="checkbox" id="game_checkbox" name="result" value=1>
+        <span id="checkmark_2">
+            <label id="result_label">Verloren</span>
     </label>
-
+    <br>
     <!-- Alles abschicken -->
 
     <input class="confirm_button" type="submit" value="Eintragen">
