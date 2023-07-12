@@ -26,6 +26,15 @@ $query_modular = "SELECT * FROM encounter_sets JOIN products ON encounter_sets.p
 $encounters = $conn->query($query_modular);
 $encountercount = $encounters->num_rows;
 
+$query_standard = "SELECT * FROM encounter_sets JOIN products ON encounter_sets.product_ref=products.product_ref WHERE products.collected = 1 AND encounter_sets.standard = 1";
+$standard = $conn->query($query_standard);
+
+$query_expert = "SELECT * FROM encounter_sets JOIN products ON encounter_sets.product_ref=products.product_ref WHERE products.collected = 1 AND encounter_sets.expert = 1";
+$expert = $conn->query($query_expert);
+
+$query_scenario = "SELECT * FROM scenarios";
+$scenarios = $conn->query($query_scenario);
+
 ?>
 <h1>Neues Spiel eintragen</h1>
 
@@ -37,7 +46,7 @@ $encountercount = $encounters->num_rows;
     <br>
 
     <!-- Held auswählen -->
-    
+
     <select name="hero_id" id="hero_select">
         <option value="">Held auswählen</option>
         <?php
@@ -84,18 +93,47 @@ $encountercount = $encounters->num_rows;
     </select>
     <br>
     <!-- Schwierigkeitsgrad -->
-    Schwierigkeit:
-    <select name="difficulty">
-        <option value="standard">Standard</option>
-        <option value="expert">Experte</option>
-        <option value="heroic">Heroisch</option>
-    </select>
+
+    <input type="radio" id="std" class="radio" name="difficulty" value="standard" checked>
+    <label for="std">Standard</label>
+    <input type="radio" id="exp" class="radio" name="difficulty" value="expert">
+    <label for="exp">Experte</label>
+    <input type="radio" id="her" class="radio" name="difficulty" value="heroic">
+    <label for="her">Heroisch</label>
+
+    <br>
+        <select name="standard">
+        <?php         
+        while ($row = $standard->fetch_assoc()) {
+            ?>
+            <option value="<?php echo $row["set_id"] ?>"><?php echo $row["set_name"] ?></option>
+            <?php
+        }
+        ?>
+        </select>
+
+        <select hidden id="exp_set" name="expert">
+        <?php         
+        while ($row = $expert->fetch_assoc()) {
+            ?>
+            <option value="<?php echo $row["set_id"] ?>"><?php echo $row["set_name"] ?></option>
+            <?php
+        }
+        ?>
+        </select>
+    
+
+    <!-- Zwischenblock -->
+
+    <br>
     <br>
     gegen
     <br>
+    <br>
+
     <!-- Szenarioname eintragen -->
 
-    <select name="villain_id">
+    <select id="villain" name="villain_id">
         <option value="">Scenario auswählen</option>
         <?php
         while ($row = $villains->fetch_assoc()) {
@@ -106,6 +144,7 @@ $encountercount = $encounters->num_rows;
         ?>
     </select>
     <br>
+
     <!-- Modulare sets -->
 
     <?php
@@ -146,4 +185,4 @@ $encountercount = $encounters->num_rows;
 <?php include "../htmls/footer.html"
     ?>
 <script src="../scripts/jquery.js" type="text/javascript"></script>
-<script src="../scripts/eintragen.js" type="text/javascript"></script>
+<script src="../scripts/spiel-eintragen.js" type="text/javascript"></script>

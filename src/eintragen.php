@@ -16,6 +16,8 @@ $villain_id = $_POST["villain_id"];
 $aspect = $_POST["aspect"];
 $aspect_2 = $_POST["aspect_2"];
 $difficulty = $_POST["difficulty"];
+$std_set = $_POST["standard"];
+$exp_set = $_POST["expert"];
 $encounter_set_1 = $_POST["encounter_set_1"];
 $encounter_set_2 = $_POST["encounter_set_2"];
 $encounter_set_3 = $_POST["encounter_set_3"];
@@ -26,10 +28,10 @@ $encounter_set_7 = $_POST["encounter_set_7"];
 $result = $_POST["result"] == 1 ? 1 : 0; 
 
 $query = "INSERT INTO games 
-(game_id, date, hero_id, aspect, aspect_2, difficulty, set_id, 
+(game_id, date, hero_id, aspect, aspect_2, difficulty, std_set, exp_set, set_id, 
 encounter_set_1, encounter_set_2, encounter_set_3, encounter_set_4, 
 encounter_set_5, encounter_set_6, encounter_set_7, win) 
-VALUES (NULL, '$date', $hero_id, '$aspect', '$aspect_2', '$difficulty', $villain_id, 
+VALUES (NULL, '$date', $hero_id, '$aspect', '$aspect_2', '$difficulty', $std_set, $exp_set, $villain_id, 
 '$encounter_set_1', '$encounter_set_2', '$encounter_set_3', '$encounter_set_4', 
 '$encounter_set_5', '$encounter_set_6', '$encounter_set_7', $result)";
 if ($conn->query($query) === TRUE) {
