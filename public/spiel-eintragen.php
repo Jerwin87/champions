@@ -22,18 +22,11 @@ $query_aspects = "SELECT * FROM aspects";
 $aspects = $conn->query($query_aspects);
 $aspectcount = $aspects->num_rows;
 
-$query_modular = "SELECT * FROM encounter_sets JOIN products ON encounter_sets.product_ref=products.product_ref WHERE products.collected = 1 AND encounter_sets.modular = 1";
-$encounters = $conn->query($query_modular);
-$encountercount = $encounters->num_rows;
-
 $query_standard = "SELECT * FROM encounter_sets JOIN products ON encounter_sets.product_ref=products.product_ref WHERE products.collected = 1 AND encounter_sets.standard = 1";
 $standard = $conn->query($query_standard);
 
 $query_expert = "SELECT * FROM encounter_sets JOIN products ON encounter_sets.product_ref=products.product_ref WHERE products.collected = 1 AND encounter_sets.expert = 1";
 $expert = $conn->query($query_expert);
-
-$query_scenario = "SELECT * FROM scenarios";
-$scenarios = $conn->query($query_scenario);
 
 ?>
 <h1>Neues Spiel eintragen</h1>
@@ -74,7 +67,7 @@ $scenarios = $conn->query($query_scenario);
         <?php
         while ($row = $aspects->fetch_assoc()) {
             ?>
-            <option value="<?php echo $row["aspect"] ?>"><?php echo $row["aspect"] ?></option>
+            <option value="<?php echo $row["aspect_id"] ?>"><?php echo $row["aspect"] ?></option>
             <?php
         }
         ?>
@@ -86,7 +79,7 @@ $scenarios = $conn->query($query_scenario);
         $aspects->data_seek(0);
         while ($row = $aspects->fetch_assoc()) {
             ?>
-            <option value="<?php echo $row["aspect"] ?>"><?php echo $row["aspect"] ?></option>
+            <option value="<?php echo $row["aspect_id"] ?>"><?php echo $row["aspect"] ?></option>
             <?php
         }
         ?>
@@ -154,36 +147,20 @@ $scenarios = $conn->query($query_scenario);
     </select>
     <br>
 
+<div id="encounterSets"></div>
     <!-- Modulare sets -->
 
-    <?php
-    $x = 1;
-    while ($x <= 7) {
-        $set_num = "encounter_set_" . $x;
-        ?>
-        <select name="<?php echo $set_num ?>">
-            <option value="">Modulare Sets</option>
-            <?php
-            while ($row = $encounters->fetch_assoc()) {
-                ?>
-                <option value="<?php echo $row["set_id"] ?>"><?php echo $row["set_name"] ?></option>
-                <?php
-            }
-            ?>
-        </select>
-        <?php
-        $encounters->data_seek(0);
-        $x++;
-    }
-    ?>
     <br>
     <!-- Ergebniss eintragen -->
 
     <label class="collection_button_2">
-        <input type="checkbox" id="game_checkbox" name="result" value=1>
+        <input type="checkbox" id="game_checkbox" name="result" value=0>
         <span id="checkmark_2">
             <label id="result_label">Verloren</span>
     </label>
+    <br>
+    <label for="custom">Szenario anpassen: </label>
+    <input type="checkbox" name="custom" value=0>
     <br>
     <!-- Alles abschicken -->
 

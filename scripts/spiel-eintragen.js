@@ -14,6 +14,7 @@ $("document").ready(function () {
     $("#hero_select").change(function () {
         var hero = this.value;
         if (hero == 13) {
+            $("#aspect_1").show();
             $("#aspect_2").show();
         }
         else if (hero == 25) {
@@ -30,7 +31,7 @@ $("document").ready(function () {
     $(".radio").change(function () {
         if ($("#her").is(":checked")) {
             $("#exp_set").show();
-            $("#heroic_score").show(); 
+            $("#heroic_score").show();
         }
         else if ($("#exp").is(":checked")) {
             $("#exp_set").show();
@@ -43,6 +44,13 @@ $("document").ready(function () {
     });
 
     // Scenario automatisch ausfüllen und nur die entsprechenden Module anzeigen
+    $("#villain").change(function () {
+        var villain = $("#villain option:selected").text();
+        $("#encounterSets").load("../src/get_scenario.php", {
+            villain: villain
+        });
+    });
+
 
 
 });

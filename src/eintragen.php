@@ -26,17 +26,24 @@ $encounter_set_4 = $_POST["encounter_set_4"];
 $encounter_set_5 = $_POST["encounter_set_5"];
 $encounter_set_6 = $_POST["encounter_set_6"];
 $encounter_set_7 = $_POST["encounter_set_7"];
+$encounter_set_8 = $_POST["encounter_set_8"];
+$encounter_set_9 = $_POST["encounter_set_9"];
+$encounter_set_10 = $_POST["encounter_set_10"];
+$custom = $_POST["custom"] == 1 ? 1 : 0;
 $result = $_POST["result"] == 1 ? 1 : 0; 
 
 $query = "INSERT INTO games 
-(game_id, date, hero_id, aspect, aspect_2, difficulty, std_set, exp_set, 
-heroic, set_id, 
+(game_id, date, hero_id, aspect, aspect_2, difficulty, 
+std_set, exp_set, heroic, set_id, 
 encounter_set_1, encounter_set_2, encounter_set_3, encounter_set_4, 
-encounter_set_5, encounter_set_6, encounter_set_7, win) 
-VALUES (NULL, '$date', $hero_id, '$aspect', '$aspect_2', '$difficulty', $std_set, $exp_set, $heroic,
- $villain_id, 
+encounter_set_5, encounter_set_6, encounter_set_7, encounter_set_8, 
+encounter_set_9, encounter_set_10, custom, win) 
+VALUES 
+(NULL, '$date', $hero_id, '$aspect', '$aspect_2', '$difficulty',  
+$std_set, $exp_set, $heroic, $villain_id, 
 '$encounter_set_1', '$encounter_set_2', '$encounter_set_3', '$encounter_set_4', 
-'$encounter_set_5', '$encounter_set_6', '$encounter_set_7', $result)";
+'$encounter_set_5', '$encounter_set_6', '$encounter_set_7', '$encounter_set_8', 
+'$encounter_set_9', '$encounter_set_10', $custom, $result)";
 if ($conn->query($query) === TRUE) {
     echo "<h2>Spiel erfolgreich eingetragen</h2>";
 } else {
