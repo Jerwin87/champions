@@ -1,7 +1,6 @@
 <?php
 
 include "../htmls/header.html";
-include "../htmls/menu.html";
 include "../data/mysqlconnect.php";
 
 $conn = new mysqli($servername, $username, $password, $database);
@@ -159,7 +158,7 @@ $expert = $conn->query($query_expert);
             <label id="result_label">Verloren</span>
     </label>
     <br>
-    <label for="custom">Szenario anpassen: </label>
+    <label for="custom">Benutzerdefinierte Einstellungen: </label>
     <input type="checkbox" id="custom" name="custom" value=1>
     <br>
     <!-- Alles abschicken -->

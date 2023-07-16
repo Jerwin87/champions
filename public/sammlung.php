@@ -1,7 +1,6 @@
 <?php
 
 include "../htmls/header.html";
-include "../htmls/menu.html";
 include "../data/mysqlconnect.php";
 
 $conn = new mysqli($servername, $username, $password, $database);

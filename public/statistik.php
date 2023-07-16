@@ -1,6 +1,5 @@
 <?php
 include "../htmls/header.html";
-include "../htmls/menu.html";
 include "../data/mysqlconnect.php";
 ?>
 <h1>Spiele</h1>

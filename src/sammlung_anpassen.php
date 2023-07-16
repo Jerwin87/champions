@@ -24,4 +24,4 @@ while ($row = $products->fetch_assoc()) {
     $conn->query($query);
 }
 
-echo "Sammlung aktualisiert";
+echo "<br> Sammlung aktualisiert";
