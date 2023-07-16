@@ -74,7 +74,7 @@ $expert = $conn->query($query_expert);
     </select>
 
     <select hidden id="aspect_2" name="aspect_2">
-        <option value="">Aspekt</option>
+        <option value="0">Aspekt</option>
         <?php
         $aspects->data_seek(0);
         while ($row = $aspects->fetch_assoc()) {
@@ -116,7 +116,7 @@ $expert = $conn->query($query_expert);
         </select>
 
         <select hidden id="heroic_score" name="heroic_score">
-            <?php for ($x = 1; $x < 5; $x++) {
+            <?php for ($x = 0; $x < 5; $x++) {
                 ?>
                 <option value="<?php echo $x?>"><?php echo $x ?>
                 <?php
@@ -154,13 +154,13 @@ $expert = $conn->query($query_expert);
     <!-- Ergebniss eintragen -->
 
     <label class="collection_button_2">
-        <input type="checkbox" id="game_checkbox" name="result" value=0>
+        <input type="checkbox" id="game_checkbox" name="result" value=1>
         <span id="checkmark_2">
             <label id="result_label">Verloren</span>
     </label>
     <br>
     <label for="custom">Szenario anpassen: </label>
-    <input type="checkbox" name="custom" value=0>
+    <input type="checkbox" id="custom" name="custom" value=1>
     <br>
     <!-- Alles abschicken -->
 
