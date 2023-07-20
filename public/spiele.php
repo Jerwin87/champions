@@ -11,6 +11,8 @@ if ($conn->connect_errno) {
     die("Connection failed: " . $conn->connect_error);
 }
 
+$conn->set_charset(("utf8"));
+
 $query = "SELECT * FROM games JOIN heroes ON games.hero_id=heroes.hero_id JOIN aspects ON aspects.aspect_id=games.aspect JOIN encounter_sets ON games.villain_id=encounter_sets.set_id ORDER BY game_id";
 $games = $conn->query($query);
 

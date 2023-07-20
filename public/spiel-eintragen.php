@@ -5,6 +5,7 @@ include "../data/mysqlconnect.php";
 
 session_start();
 $conn = new mysqli($servername, $username, $password, $database);
+$conn->set_charset(("utf8"));
 
 if ($conn->connect_errno) {
     die("Connection failed: " . $conn->connect_error);
