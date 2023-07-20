@@ -46,17 +46,12 @@ $("document").ready(function () {
     // Scenario automatisch ausfüllen und nur die entsprechenden Module anzeigen
     $("#villain").change(function () {
         var villain = $("#villain option:selected").text();
+        var villain_id = $("#villain option:selected").val();
         $("#encounterSets").load("../src/get_scenario.php", {
-            villain: villain
+            villain: villain,
+            villain_id : villain_id
         });
     });
-
-    TODO
-    // Benutzerdefinierte Szenarien erlauben
-    // $("#custom").click(function () {
-    //     $("#encouter_set_10").show().change();
-    // })
-
 
 });
 

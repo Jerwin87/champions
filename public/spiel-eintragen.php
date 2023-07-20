@@ -3,6 +3,7 @@
 include "../htmls/header.html";
 include "../data/mysqlconnect.php";
 
+session_start();
 $conn = new mysqli($servername, $username, $password, $database);
 
 if ($conn->connect_errno) {
@@ -26,6 +27,11 @@ $standard = $conn->query($query_standard);
 
 $query_expert = "SELECT * FROM encounter_sets JOIN products ON encounter_sets.product_ref=products.product_ref WHERE products.collected = 1 AND encounter_sets.expert = 1";
 $expert = $conn->query($query_expert);
+
+$query_game_id = "SELECT game_id FROM games ORDER BY game_id DESC";
+$game_id_sql = $conn->query($query_game_id);
+$row = $game_id_sql->fetch_assoc();
+$_SESSION['game_id'] = $row['game_id'] + 1;
 
 ?>
 <h1>Neues Spiel eintragen</h1>
@@ -160,6 +166,7 @@ $expert = $conn->query($query_expert);
     <br>
     <label for="custom">Benutzerdefinierte Einstellungen: </label>
     <input type="checkbox" id="custom" name="custom" value=1>
+    <br>
     <br>
     <!-- Alles abschicken -->
 
