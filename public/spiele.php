@@ -1,7 +1,5 @@
 <?php
 
-// TODO Aspekt 2.
-
 include "../htmls/header.html";
 include "../data/mysqlconnect.php";
 
@@ -13,8 +11,9 @@ if ($conn->connect_errno) {
 
 $conn->set_charset(("utf8"));
 
-$query = "SELECT * FROM games JOIN heroes ON games.hero_id=heroes.hero_id JOIN aspects ON aspects.aspect_id=games.aspect JOIN encounter_sets ON games.villain_id=encounter_sets.set_id ORDER BY game_id";
+$query = "SELECT * FROM games JOIN heroes ON games.hero_id=heroes.hero_id JOIN encounter_sets ON games.villain_id=encounter_sets.set_id ORDER BY game_id";
 $games = $conn->query($query);
+$aspects = ['unbekannt', 'Aggression', 'Führung', 'Gerechtigkeit', ' Schutz'];
 
 
 ?>
@@ -32,7 +31,7 @@ $games = $conn->query($query);
     <?php
     $y = 1;
     while ($row = $games->fetch_assoc()) {
-        $aspect = $row['aspect_2'] != 0 ? $row['aspect'] . " / " . $row['aspect'] : $row['aspect'];
+        $aspect = $row['aspect_2'] != 0 ? $aspects[$row['aspect']] . " / " . $aspects[$row['aspect_2']] : $aspects[$row['aspect']];
         $modulars = "";
         $game_id = $row['game_id'];
         $query = "SELECT * FROM games_config JOIN encounter_sets USING(set_id) WHERE game_id=$game_id ";
