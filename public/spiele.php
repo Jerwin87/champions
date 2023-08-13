@@ -17,6 +17,15 @@ $aspects = ['unbekannt', 'Aggression', 'Führung', 'Gerechtigkeit', ' Schutz'];
 
 
 ?>
+
+<h1>Spiele</h1>
+
+<button id="filter_button">Filter hinzufügen</button>
+<br>
+<div id="filter_form">
+</div>
+
+<!-- Tabelle anzeigen -->
 <table class="result">
     <tr>
         <th>Spiel</th>
@@ -68,4 +77,7 @@ $aspects = ['unbekannt', 'Aggression', 'Führung', 'Gerechtigkeit', ' Schutz'];
     ?>
 </table>
 <?php
-?>
+include "../htmls/footer.html"
+    ?>
+<script src="../scripts/jquery.js" type="text/javascript"></script>
+<script src="../scripts/spiele-filtern.js" type="text/javascript"></script>

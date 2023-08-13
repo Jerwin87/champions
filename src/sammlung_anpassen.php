@@ -1,6 +1,5 @@
 <?php
 include "../htmls/header.html";
-include "../htmls/menu.html";
 include "../data/mysqlconnect.php";
 
 

@@ -1,5 +1,6 @@
 body {
     margin-top: 0;
+    margin-bottom: 0;
     background-color: #EDEDED;
 }
 
@@ -17,12 +18,33 @@ h1 {
 /* menu */
 .menu_main {
     display: flex;
-    flex-flow: row wrap; 
+    flex-flow: row wrap;
 }
 
 .menu_sub {
     display: flex;
+    box-sizing: border-box;
+    min-width: 150px;
     width: calc(100% / 4);
+    background-color: rgb(114, 185, 113);
+    border: 1px solid black;
+    color: black;
+}
+
+a:link {
+    text-decoration: none;
+}
+
+a:visited {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+a:active {
+    text-decoration: none;
 }
 
 ul {
@@ -37,7 +59,9 @@ li a {
 }
 
 /* Spiel Übersicht */
-table, th, td {
+table,
+th,
+td {
     border: 1px solid black;
 }
 
@@ -91,8 +115,8 @@ table, th, td {
 }
 
 .child {
-    width: 200px;  
-    height: 100%;  
+    width: 200px;
+    height: 100%;
     align-self: flex-start;
 }
 
@@ -152,19 +176,43 @@ table, th, td {
     position: relative;
     top: 4px;
     left: 10px;
-    font-weight: bold; 
+    font-weight: bold;
 }
 
 @media (min-width:801px) {
     body {
         margin-left: 10%;
         margin-right: 10%;
-    }    
+    }
 }
 
 @media (min-width:1281px) {
     body {
         margin-left: 20%;
         margin-right: 20%;
-    }    
+    }
+}
+
+@media (max-width:630px) {
+    .menu_sub {
+        display: flex;
+        box-sizing: border-box;
+        min-width: 150px;
+        width: calc(100% / 2);
+        background-color: rgb(114, 185, 113);
+        border: 1px solid black;
+        color: black;
+    }
+}
+
+@media (max-width:330px) {
+    .menu_sub {
+        display: flex;
+        box-sizing: border-box;
+        min-width: 150px;
+        width: 100% ;
+        background-color: rgb(114, 185, 113);
+        border: 1px solid black;
+        color: black;
+    }
 }
