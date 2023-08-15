@@ -25,9 +25,10 @@ $std_set = $_POST['standard'];
 $exp_set = $_POST['expert'];
 
 
-$query = "INSERT INTO games VALUES 
-($game_id, '$date', $hero_id, '$aspect', '$aspect_2', $villain_id, '$difficulty',  
-$heroic, $custom, $result)";
+$query = "INSERT INTO games (game_id, date, hero_id, aspect, aspect_2, villain_id, 
+difficulty, heroic, custom, win) VALUES 
+($game_id, '$date', $hero_id, '$aspect', '$aspect_2', $villain_id, 
+'$difficulty', $heroic, $custom, $result)";
 
 if ($conn->query($query) === TRUE) {
     echo "Spiel erfolgreich eingetragen<br>";
