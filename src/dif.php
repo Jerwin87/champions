@@ -9,6 +9,9 @@ if ($conn->connect_errno) {
 }
 
 $dif = $_POST["dif"];
+$camp = $_POST["camp"];
+$precon = $_POST["precon"];
+$custom = $_POST["custom"];
 
 $query_h = "SELECT * FROM heroes";
 $heroes = $conn->query($query_h);
@@ -25,7 +28,7 @@ if ($dif != "") {
 
 while ($row = $heroes->fetch_assoc()) {
     $hero_id = $row['hero_id'];
-    $won_games = $conn->query("SELECT * FROM games JOIN encounter_sets ON (games.villain_id=encounter_sets.set_id) WHERE games.hero_id=$hero_id $dif AND games.win=1 GROUP BY villain_id");
+    $won_games = $conn->query("SELECT * FROM games JOIN encounter_sets ON (games.villain_id=encounter_sets.set_id) WHERE games.hero_id=$hero_id $dif AND games.campaign<=$camp AND games.precon>=$precon AND games.custom<=$custom AND games.win=1 GROUP BY villain_id");
     $count = $won_games->num_rows;
     if ($count > 0) {
         if (strlen($row["alter_ego"]) > 0) {

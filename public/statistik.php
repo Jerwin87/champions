@@ -23,6 +23,24 @@ if ($conn->connect_errno) {
 <input type="radio" class="dif_select" name="dif_select" value="heroic">
 <label for="heroic">Heroisch</label>
 <br>
+
+<p>Kampagne ausschließen: 
+<input type="radio" class="camp" name="camp" value=1 checked>
+<label for="">Nein</label>
+<input type="radio" class="camp" name="camp" value=0>
+<label for="">Ja</label> </p>
+
+<p>Nur vorgefertigte Decks anzeigen: 
+<input type="radio" class="precon" name="precon" value=0 checked>
+<label for="">Nein</label>
+<input type="radio" class="precon" name="precon" value=1>
+<label for="">Ja</label> </p>
+
+<p>Benutzerdefinierte Modulars ausschließen: 
+<input type="radio" class="custom" name="custom" value=1 checked>
+<label for="">Nein</label>
+<input type="radio" class="custom" name="custom" value=0>
+<label for="">Ja</label> </p>
 <br>
 
 <div id="schwierigkeit">

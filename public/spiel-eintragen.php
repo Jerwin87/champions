@@ -159,15 +159,23 @@ $_SESSION['game_id'] = $row['game_id'] + 1;
     <br>
     <!-- Ergebniss eintragen -->
 
+
+    <label for="custom">Benutzerdefinierte Einstellungen: </label>
+    <input type="checkbox" id="custom" name="custom" value=1>
+    <br>
+    <label for="camp">Kampagnenspiel: </label>
+    <input type="checkbox" id="camp" name="camp" value=1>
+    <br> 
+    <label for="precon">Vorgefertigtes Deck: </label>
+    <input type="checkbox" id="precon" name="precon" value=1>
+    <br>
+    <br>
+
     <label class="collection_button_2">
         <input type="checkbox" id="game_checkbox" name="result" value=1>
         <span id="checkmark_2">
             <label id="result_label">Verloren</span>
     </label>
-    <br>
-    <label for="custom">Benutzerdefinierte Einstellungen: </label>
-    <input type="checkbox" id="custom" name="custom" value=1>
-    <br>
     <br>
     <!-- Alles abschicken -->
 

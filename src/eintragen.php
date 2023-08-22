@@ -20,15 +20,18 @@ $difficulty = $_POST["difficulty"];
 $heroic = $_POST["heroic_score"];
 $custom = $_POST["custom"] == 1 ? 1 : 0;
 $result = $_POST["result"] == 1 ? 1 : 0;
+$camp = $_POST['camp'] == 1 ? 1 : 0;
+$precon = $_POST['precon'] == 1 ? 1 : 0;
+
 $mod_count = $_SESSION["mod_count"];
 $std_set = $_POST['standard'];
 $exp_set = $_POST['expert'];
 
 
 $query = "INSERT INTO games (game_id, date, hero_id, aspect, aspect_2, villain_id, 
-difficulty, heroic, custom, win) VALUES 
+difficulty, heroic, custom, win, campaign, precon) VALUES 
 ($game_id, '$date', $hero_id, '$aspect', '$aspect_2', $villain_id, 
-'$difficulty', $heroic, $custom, $result)";
+'$difficulty', $heroic, $custom, $result, $camp, $precon)";
 
 if ($conn->query($query) === TRUE) {
     echo "Spiel erfolgreich eingetragen<br>";
