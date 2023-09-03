@@ -14,11 +14,11 @@ if ($conn->connect_errno) {
 
 ?>
 
-<input type="radio" class="dif_select" name="dif_select" value="" checked>
+<input type="radio" class="dif_select" name="dif_select" value="" >
 <label for="all">Alle</label>
 <input type="radio" class="dif_select" name="dif_select" value="standard">
 <label for="standard">Standard</label>
-<input type="radio" class="dif_select" name="dif_select" value="expert">
+<input type="radio" class="dif_select" name="dif_select" value="expert" checked>
 <label for="expert">Expert</label>
 <input type="radio" class="dif_select" name="dif_select" value="heroic">
 <label for="heroic">Heroisch</label>
@@ -57,7 +57,7 @@ $win_numbers = [];
 
 while ($row = $heroes->fetch_assoc()) {
     $hero_id = $row['hero_id'];
-    $won_games = $conn->query("SELECT * FROM games JOIN encounter_sets ON (games.villain_id=encounter_sets.set_id) WHERE games.hero_id=$hero_id AND games.win=1 GROUP BY villain_id");
+    $won_games = $conn->query("SELECT * FROM games JOIN encounter_sets ON (games.villain_id=encounter_sets.set_id) WHERE games.hero_id=$hero_id AND games.difficulty='expert' AND games.win=1 GROUP BY villain_id");
     $count = $won_games->num_rows;
     if ($count > 0) {
         if (strlen($row["alter_ego"]) > 0) {
