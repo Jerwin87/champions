@@ -11,8 +11,9 @@ if ($conn->connect_errno) {
 
 $conn->set_charset(("utf8"));
 
-$query = "SELECT * FROM games JOIN heroes ON games.hero_id=heroes.hero_id JOIN encounter_sets ON games.villain_id=encounter_sets.set_id ORDER BY game_id";
+$query = "SELECT * FROM games JOIN heroes ON games.hero_id=heroes.hero_id JOIN encounter_sets ON games.villain_id=encounter_sets.set_id ORDER BY game_id DESC";
 $games = $conn->query($query);
+$num_games = $games->num_rows;
 $aspects = ['unbekannt', 'Aggression', 'Führung', 'Gerechtigkeit', ' Schutz'];
 
 
@@ -38,11 +39,20 @@ $aspects = ['unbekannt', 'Aggression', 'Führung', 'Gerechtigkeit', ' Schutz'];
         <th>Ergebnis</th>
     </tr>
     <?php
-    $y = 1;
+    $y = $num_games;
     while ($row = $games->fetch_assoc()) {
-        $aspect = $row['aspect_2'] != 0 ? $aspects[$row['aspect']] . " / " . $aspects[$row['aspect_2']] : $aspects[$row['aspect']];
-        $modulars = "";
         $game_id = $row['game_id'];
+        $aspects = "";
+        $query = "SELECT * FROM aspects JOIN aspect_config USING(aspect_id) WHERE game_id=$game_id";
+        $result = $conn->query($query);
+        $v = 0;
+        while ($aspect_row = $result->fetch_assoc()) {
+            $h = $v > 0 ? " / " : "";
+            $aspects = $aspects . $h . $aspect_row['aspect'];
+            $v++;
+            }
+        // $aspect = $row['aspect_2'] != 0 ? $aspects[$row['aspect']] . " / " . $aspects[$row['aspect_2']] : $aspects[$row['aspect']];
+        $modulars = "";
         $query = "SELECT * FROM games_config JOIN encounter_sets USING(set_id) WHERE game_id=$game_id ";
         $result = $conn->query($query);
         $v = 0;
@@ -65,13 +75,13 @@ $aspects = ['unbekannt', 'Aggression', 'Führung', 'Gerechtigkeit', ' Schutz'];
         echo "<td>" . $y . "</td>";
         echo "<td>" . $row["date"] . "</td>";
         echo "<td>" . $hero_name . "</td>";
-        echo "<td>" . $aspect . "</td>";
+        echo "<td>" . $aspects . "</td>";
         echo "<td>" . $row['difficulty'] . "</td>";
         echo "<td>" . $row["set_name"] . "</td>";
         echo "<td>" . $modulars . "</td>";
         echo "<td>" . $win . "</td>";
         echo "</tr>";
-        $y++;
+        $y--;
     }
 
     ?>

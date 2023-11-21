@@ -10,20 +10,26 @@ $("document").ready(function () {
         }
     });
 
-    // 2 Aspektfelder anzeigen wenn Spider-Women, keines wenn Adam Warlock
+    // 2 Aspektfelder anzeigen wenn Spider-Women, 4 wenn Adam Warlock
     $("#hero_select").change(function () {
         var hero = this.value;
         if (hero == 13) {
             $("#aspect_1").show();
             $("#aspect_2").show();
+            $("#aspect_3").hide();
+            $("#aspect_4").hide();
         }
         else if (hero == 25) {
-            $("#aspect_1").hide();
-            $("#aspect_2").hide();
+            $("#aspect_1").show();
+            $("#aspect_2").show();
+            $("#aspect_3").show();
+            $("#aspect_4").show();
         }
         else if (hero != 13) {
             $("#aspect_1").show();
             $("#aspect_2").hide();
+            $("#aspect_3").hide();
+            $("#aspect_4").hide();
         };
     });
 

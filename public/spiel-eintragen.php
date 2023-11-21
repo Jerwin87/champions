@@ -80,7 +80,29 @@ $_SESSION['game_id'] = $row['game_id'] + 1;
     </select>
 
     <select hidden id="aspect_2" name="aspect_2">
-        <option value="0">Aspekt</option>
+        <option value="0">Aspekt 2</option>
+        <?php
+        $aspects->data_seek(0);
+        while ($row = $aspects->fetch_assoc()) {
+            ?>
+            <option value="<?php echo $row["aspect_id"] ?>"><?php echo $row["aspect"] ?></option>
+            <?php
+        }
+        ?>
+    </select>
+    <select hidden id="aspect_3" name="aspect_3">
+        <option value="0">Aspekt 3</option>
+        <?php
+        $aspects->data_seek(0);
+        while ($row = $aspects->fetch_assoc()) {
+            ?>
+            <option value="<?php echo $row["aspect_id"] ?>"><?php echo $row["aspect"] ?></option>
+            <?php
+        }
+        ?>
+    </select>
+    <select hidden id="aspect_4" name="aspect_4">
+        <option value="0">Aspekt 4</option>
         <?php
         $aspects->data_seek(0);
         while ($row = $aspects->fetch_assoc()) {

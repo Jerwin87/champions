@@ -2,9 +2,9 @@
 include "../htmls/header.html";
 include "../data/mysqlconnect.php";
 
-?>
-<h1>Statistik</h1>
-<?php
+
+echo "<h1>Statistik</h1>";
+
 
 $conn = new mysqli($servername, $username, $password, $database);
 

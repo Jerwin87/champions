@@ -14,8 +14,7 @@ $game_id = $_SESSION['game_id'];
 $date = date('Y-m-d', strtotime($_POST["date"]));
 $hero_id = $_POST["hero_id"];
 $villain_id = $_POST["villain_id"];
-$aspect = $_POST["aspect"];
-$aspect_2 = $_POST["aspect_2"];
+$aspect_ids = array($_POST["aspect"], $_POST["aspect_2"], $_POST["aspect_3"], $_POST["aspect_4"]);
 $difficulty = $_POST["difficulty"];
 $heroic = $_POST["heroic_score"];
 $custom = $_POST["custom"] == 1 ? 1 : 0;
@@ -28,9 +27,9 @@ $std_set = $_POST['standard'];
 $exp_set = $_POST['expert'];
 
 
-$query = "INSERT INTO games (game_id, date, hero_id, aspect, aspect_2, villain_id, 
+$query = "INSERT INTO games (game_id, date, hero_id, villain_id, 
 difficulty, heroic, custom, win, campaign, precon) VALUES 
-($game_id, '$date', $hero_id, '$aspect', '$aspect_2', $villain_id, 
+($game_id, '$date', $hero_id, $villain_id, 
 '$difficulty', $heroic, $custom, $result, $camp, $precon)";
 
 if ($conn->query($query) === TRUE) {
@@ -49,7 +48,6 @@ for ($x = 1; $x <= $mod_count; $x++) {
         echo "Fehler: " . $eintrag . "<br>" . $conn->error;
     }
 }
-;
 
 $query = "INSERT INTO games_config VALUES
 ($game_id, $std_set)";
@@ -66,6 +64,18 @@ if ($exp_set > 0) {
         echo "Expert erfolgreich eingetragen<br>";
     } else {
         echo "Fehler: " . $eintrag . "<br>" . $conn->error;
+    }
+}
+
+foreach ($aspect_ids as &$value) {
+    if ($value > 0) {
+        $query = "INSERT INTO aspect_config VALUES
+                ($game_id, $value)";
+        if ($conn->query($query) === TRUE) {
+            echo "Aspekt erfolgreich eingetragen<br>";
+        } else {
+            echo "Fehler: " . $eintrag . "<br>" . $conn->error;
+        }
     }
 }
 

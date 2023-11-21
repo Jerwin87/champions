@@ -13,7 +13,7 @@ if ($conn->connect_errno) {
 $villain = $_POST["villain"];
 $villain_id = $_POST["villain_id"];
 
-$query_modular = "SELECT set_id, set_name FROM encounter_sets JOIN products ON encounter_sets.product_ref=products.product_ref WHERE products.collected = 1 AND encounter_sets.modular = 1";
+$query_modular = "SELECT set_id, set_name FROM encounter_sets JOIN products ON encounter_sets.product_ref=products.product_ref WHERE products.collected = 1 AND encounter_sets.modular = 1 OR encounter_sets.erzfeind = 1 ORDER BY encounter_sets.modular DESC, encounter_sets.set_id";
 $encounters = $conn->query($query_modular);
 $encountercount = $encounters->num_rows;
 
