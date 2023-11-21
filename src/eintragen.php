@@ -26,57 +26,65 @@ $mod_count = $_SESSION["mod_count"];
 $std_set = $_POST['standard'];
 $exp_set = $_POST['expert'];
 
+mysqli_begin_transaction($conn);
 
-$query = "INSERT INTO games (game_id, date, hero_id, villain_id, 
-difficulty, heroic, custom, win, campaign, precon) VALUES 
-($game_id, '$date', $hero_id, $villain_id, 
-'$difficulty', $heroic, $custom, $result, $camp, $precon)";
+try {
+    $query = "INSERT INTO games (game_id, date, hero_id, villain_id, 
+                difficulty, heroic, custom, win, campaign, precon) VALUES 
+                ($game_id, '$date', $hero_id, $villain_id, 
+                '$difficulty', $heroic, $custom, $result, $camp, $precon)";
 
-if ($conn->query($query) === TRUE) {
-    echo "Spiel erfolgreich eingetragen<br>";
-} else {
-    echo "Fehler: " . $eintrag . "<br>" . $conn->error;
-}
-
-for ($x = 1; $x <= $mod_count; $x++) {
-    $set_id = $_POST["$x"];
-    $query = "INSERT INTO games_config VALUES
-    ($game_id, $set_id)";
     if ($conn->query($query) === TRUE) {
-        echo "Set erfolgreich eingetragen<br>";
+        echo "Spiel erfolgreich eingetragen<br>";
     } else {
         echo "Fehler: " . $eintrag . "<br>" . $conn->error;
     }
-}
 
-$query = "INSERT INTO games_config VALUES
-($game_id, $std_set)";
-if ($conn->query($query) === TRUE) {
-    echo "Standard erfolgreich eingetragen<br>";
-} else {
-    echo "Fehler: " . $eintrag . "<br>" . $conn->error;
-}
-
-if ($exp_set > 0) {
-    $query = "INSERT INTO games_config VALUES
-    ($game_id, $exp_set)";
-    if ($conn->query($query) === TRUE) {
-        echo "Expert erfolgreich eingetragen<br>";
-    } else {
-        echo "Fehler: " . $eintrag . "<br>" . $conn->error;
-    }
-}
-
-foreach ($aspect_ids as &$value) {
-    if ($value > 0) {
-        $query = "INSERT INTO aspect_config VALUES
-                ($game_id, $value)";
+    for ($x = 1; $x <= $mod_count; $x++) {
+        $set_id = $_POST["$x"];
+        $query = "INSERT INTO games_config VALUES
+                ($game_id, $set_id)";
         if ($conn->query($query) === TRUE) {
-            echo "Aspekt erfolgreich eingetragen<br>";
+            echo "Set erfolgreich eingetragen<br>";
         } else {
             echo "Fehler: " . $eintrag . "<br>" . $conn->error;
         }
     }
+
+    $query = "INSERT INTO games_config VALUES
+                ($game_id, $std_set)";
+    if ($conn->query($query) === TRUE) {
+        echo "Standard erfolgreich eingetragen<br>";
+    } else {
+        echo "Fehler: " . $eintrag . "<br>" . $conn->error;
+    }
+
+    if ($exp_set > 0) {
+        $query = "INSERT INTO games_config VALUES
+    ($game_id, $exp_set)";
+        if ($conn->query($query) === TRUE) {
+            echo "Expert erfolgreich eingetragen<br>";
+        } else {
+            echo "Fehler: " . $eintrag . "<br>" . $conn->error;
+        }
+    }
+
+    foreach ($aspect_ids as &$value) {
+        if ($value > 0) {
+            $query = "INSERT INTO aspect_config VALUES
+                ($game_id, $value)";
+            if ($conn->query($query) === TRUE) {
+                echo "Aspekt erfolgreich eingetragen<br>";
+            } else {
+                echo "Fehler: " . $eintrag . "<br>" . $conn->error;
+            }
+        }
+    }
+    mysqli_commit($conn);
+} catch (mysqli_sql_exception $exception) {
+    mysqli_rollback($conn);
+
+    throw $exception;
 }
 
 include "footer.php"
